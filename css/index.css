@@ -1,0 +1,128 @@
+body {
+  padding: 20px;
+  height: 100%;
+  margin: 0 auto;
+  font-family: sans-serif;
+  background: #dbf4f7;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #2b566b;
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+}
+
+#logo {
+  width: 17px;
+  height: 17px;
+  background: url('../assets/cards-white.png');
+  background-size: contain;
+  display: inline-block;
+  margin-right: 10px;
+}
+#title {
+  display: inline-block;
+}
+
+#cards {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+#stack {
+  margin: auto;
+  padding: 0 20px;
+  height: 130px;
+  width: 180px;
+}
+
+.card {
+  display: inline-block;
+  position: fixed;
+  width: 150px;
+  height: 100px;
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+  font-size: 120%;
+  cursor: pointer;
+  color: white;
+  background-color: #444;
+}
+
+.card:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  transform: scale(1.05, 1.05);
+  -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+
+.group .card {
+  vertical-align: top;
+  margin: 0 0 10px 10px;
+}
+
+.group {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #2b566b;
+  border: 1px solid #2b566b;
+  border-radius: 4px;
+}
+
+.group .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px;
+  cursor: pointer;
+}
+.group input {
+  background: none;
+  outline: none;
+  border: none;
+  text-align: center;
+  color: #2b566b;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px;
+}
+
+#newGroup {
+  width: 300px;
+  color: #79a5bb;
+  border: 1px dashed #79a5bb;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 150%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#newGroup input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: center;
+  background: none;
+  color: #2b566b;
+}
+
+#footer {
+  text-align: center;
+  color: #79a5bb;
+  font-size: 90%;
+  margin-top: 20px;
+}
+
+.display-none {
+  display: none;
+}
