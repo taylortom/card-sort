@@ -14,7 +14,22 @@ body {
   background: #2b566b;
   font-weight: bold;
   color: white;
-  padding: 10px 20px;
+}
+#header .inner {
+  margin: 10px 15px;
+}
+#menu {
+  float: right;
+}
+#menu button {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+#menu button:hover {
+  text-decoration: underline;
 }
 
 #logo {
@@ -65,17 +80,19 @@ body {
 .group .card {
   vertical-align: top;
   margin: 0 0 10px 10px;
+  position: initial;
 }
 
 .group {
   margin-bottom: 20px;
-  text-align: center;
   color: #2b566b;
   border: 1px solid #2b566b;
   border-radius: 4px;
+  min-height: 150px;
 }
 
 .group .title {
+  text-align: center;
   font-size: 24px;
   font-weight: bold;
   margin: 15px;
@@ -90,6 +107,17 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin: 15px;
+}
+
+.group .cards {
+  min-height: 130px;
+  margin: 10px;
+  margin-top: 0;
+  border-radius: 3px;
+}
+
+.group .cards.drop-active {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 #newGroup {

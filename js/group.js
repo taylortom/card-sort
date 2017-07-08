@@ -4,25 +4,16 @@ var Group = function(data) {
   this.renderCards = renderCards;
   this.renderCard = renderCard;
 
-  this.$el = $("<div/>", { class: "group" });
+  this.$el = $("<div>", { class: "group" });
   this.render();
 };
 
 function render() {
   var inputDiv = "<input type='text' name='groupTitle' value='" + this.data.name + "' class='display-none'>";
   var textDiv = "<span>" + this.data.name + "</span>";
-  this.$el.append("<div class='title'>" + inputDiv + textDiv);
+  this.$el.append("<div class='title'>" + inputDiv + textDiv, "<div class='cards dropzone'>");
 
-  $('.title', this.$el).click(function(event) {
-    event.stopPropagation();
-    if($(event.originalEvent.target).hasClass('title')) {
-      return;
-    }
-    $(event.currentTarget).children().toggleClass('display-none');
-    $('input', event.currentTarget)
-      .val($('span', event.currentTarget).text())
-      .focus();
-  });
+  $('.title', this.$el).click(onTitleClick);
 
   this.renderCards();
 }
@@ -34,4 +25,15 @@ function renderCards() {
 
 function renderCard(card) {
   console.log(card);
+}
+
+function onTitleClick(event) {
+  event.stopPropagation();
+  if($(event.originalEvent.target).hasClass('title')) {
+    return;
+  }
+  $(event.currentTarget).children().toggleClass('display-none');
+  $('input', event.currentTarget)
+    .val($('span', event.currentTarget).text())
+    .focus();
 }

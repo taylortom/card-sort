@@ -20,6 +20,19 @@ interact('.draggable')
   },
   // call this function on every dragend event
   onend: function dragEndListener(event) {
-    console.log('moved a distance of ' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + 'px');
+    // console.log('moved a distance of ' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + 'px');
   }
+});
+
+interact('.dropzone')
+  .dropzone({
+    overlap: 0.5,
+    ondropactivate: function(event) {
+      $('.group .cards').addClass('drop-active');
+    },
+    ondrop: function(event) {
+      console.log(event);
+      $(event.relatedTarget).appendTo(event.target).css('transform', 'none');
+      $('.group .cards').removeClass('drop-active');
+    }
 });
