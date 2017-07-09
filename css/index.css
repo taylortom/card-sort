@@ -51,19 +51,17 @@ body {
 }
 
 #stack {
-  margin: auto;
   padding: 0 20px;
-  height: 130px;
-  width: 180px;
 }
 
 .card {
   display: inline-block;
-  position: fixed;
   width: 150px;
   height: 100px;
   border-radius: 4px;
   padding: 15px;
+  margin: 0 10px 10px 0;
+  vertical-align: top;
   text-align: center;
   font-size: 120%;
   cursor: pointer;
@@ -78,16 +76,10 @@ body {
     transition-duration: 0.2s;
 }
 
-.group .card {
-  vertical-align: top;
-  margin: 0 0 10px 10px;
-  position: initial;
-}
-
 .group {
   margin-bottom: 20px;
   color: #2b566b;
-  border: 1px solid #2b566b;
+  border: 1px dashed #2b566b;
   border-radius: 4px;
   min-height: 150px;
 }
@@ -96,7 +88,9 @@ body {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  margin: 15px;
+  padding: 5px;
+  border-bottom: 1px dashed #83a5b1;
+  background: #cae5ef;
   cursor: pointer;
 }
 .group input {
@@ -107,14 +101,14 @@ body {
   color: #2b566b;
   font-size: 24px;
   font-weight: bold;
-  margin: 15px;
   font-family: inherit;
 }
 
 .group .cards {
   min-height: 130px;
-  margin: 10px;
   margin-top: 0;
+  padding: 10px;
+  padding-bottom: 0;
   border-radius: 3px;
 }
 
