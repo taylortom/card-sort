@@ -2,11 +2,12 @@ body {
   padding: 20px;
   height: 100%;
   margin: 0 auto;
-  font-family: sans-serif;
+  font-family: 'Slabo 27px', serif;
   background: #dbf4f7;
 }
 
 #header {
+  font-size: 120%;
   position: fixed;
   top: 0;
   left: 0;
@@ -107,6 +108,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin: 15px;
+  font-family: inherit;
 }
 
 .group .cards {
@@ -142,6 +144,7 @@ body {
   text-align: center;
   background: none;
   color: #2b566b;
+  font-family: inherit;
 }
 
 #footer {
