@@ -31,7 +31,6 @@ interact('.dropzone')
       $('.group .cards').addClass('drop-active');
     },
     ondrop: function(event) {
-      console.log(event);
       $(event.relatedTarget).appendTo(event.target).css('transform', 'none');
       $('.group .cards').removeClass('drop-active');
     }
