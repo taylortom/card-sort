@@ -21,14 +21,14 @@ body {
 #menu {
   float: right;
 }
-#menu button {
-  border: none;
-  background: none;
+#menu .button {
+  display: inline-block;
   color: white;
-  font-size: 15px;
+  font-size: 90%;
   cursor: pointer;
+  margin-right: 10px;
 }
-#menu button:hover {
+#menu .button:hover {
   text-decoration: underline;
 }
 
