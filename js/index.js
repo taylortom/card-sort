@@ -12,6 +12,7 @@ $(function() {
 
   function initListeners() {
     $("#newGroup").click(addNewGroup);
+    $(".button.add").click(addNewCard);
   }
 
   function loadData(doneCb) {
@@ -26,8 +27,24 @@ $(function() {
   function render() {
     for(var i = 0, count = data.cards.length; i < count; i++) {
       var card = new Card(data.cards[i]);
-      $("#cards #stack").append(card.$el);
+      $("#stack").append(card.$el);
     }
+  }
+
+  function addNewCard(clickEvent) {
+    $(clickEvent.currentTarget).children().toggleClass("display-none");
+    $("textarea", clickEvent.currentTarget)
+      .focus()
+      .on('keyup', function(keyEvent) {
+        var text = $(keyEvent.target).val();
+        if(keyEvent.which === 13 && text !== '') {
+          var card = new Card({ text: text });
+          $("#stack .button.add").after(card.$el);
+
+          $("span", clickEvent.currentTarget).toggleClass("display-none");
+          $("textarea", clickEvent.currentTarget).val("");
+        }
+      });
   }
 
   function addNewGroup(clickEvent) {

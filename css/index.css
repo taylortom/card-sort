@@ -45,13 +45,21 @@ body {
   display: inline-block;
 }
 
-#cards {
+#stack {
   margin-top: 40px;
   margin-bottom: 20px;
+  padding: 0 20px;
 }
 
-#stack {
-  padding: 0 20px;
+#stack .button.add textarea {
+  border: none;
+  outline: none;
+  color: #444;
+  background: none;
+  font-family: inherit;
+  font-size: 100%;
+  width: 146px;
+  height: 96px;
 }
 
 .card {
@@ -74,6 +82,20 @@ body {
   transform: scale(1.05, 1.05);
   -webkit-transition-duration: 0.2s; /* Safari */
     transition-duration: 0.2s;
+}
+
+#stack .button {
+  border: 1px dashed #79a5bb;
+  color: #79a5bb;
+  background: none;
+}
+#stack .button:hover {
+  box-shadow: none;
+  transform: none;
+}
+#stack .button .icon {
+  font-size: 250%;
+  display: block;
 }
 
 .group {
@@ -113,7 +135,7 @@ body {
 }
 
 .group .cards.drop-active {
-  background: rgba(0, 0, 0, 0.05);
+  /*background: rgba(0, 0, 0, 0.05);*/
 }
 
 #newGroup {
@@ -149,5 +171,5 @@ body {
 }
 
 .display-none {
-  display: none;
+  display: none !important;
 }
