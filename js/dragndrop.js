@@ -21,6 +21,7 @@ interact('.draggable')
   // call this function on every dragend event
   onend: function dragEndListener(event) {
     // console.log('moved a distance of ' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + 'px');
+    $(event.target).css('transform', 'none');
   }
 });
 
@@ -31,7 +32,7 @@ interact('.dropzone')
       $('.group .cards').addClass('drop-active');
     },
     ondrop: function(event) {
-      $(event.relatedTarget).appendTo(event.target).css('transform', 'none');
+      $(event.relatedTarget).appendTo(event.target);
       $('.group .cards').removeClass('drop-active');
     }
 });
