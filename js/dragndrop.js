@@ -21,7 +21,12 @@ interact('.draggable')
   // call this function on every dragend event
   onend: function dragEndListener(event) {
     // console.log('moved a distance of ' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + 'px');
-    $(event.target).css('transform', 'none');
+    $(event.target)
+      .css('transform', 'none')
+      .attr({
+        'data-x': 0,
+        'data-y': 0
+      });
   }
 });
 
