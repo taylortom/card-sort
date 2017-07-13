@@ -1,11 +1,7 @@
+var waiting;
+
 interact('.draggable')
   .draggable({
-  // keep the element within the area of it's parent
-  // enable autoScroll
-  autoScroll: true,
-  snap: {
-
-  },
   // call this function on every dragmove event
   onmove: function dragMoveListener(event) {
     var target = event.target;
@@ -20,7 +16,7 @@ interact('.draggable')
   },
   // call this function on every dragend event
   onend: function dragEndListener(event) {
-    // console.log('moved a distance of ' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy) | 0) + 'px');
+    $(document).off('mousemove');
     $(event.target)
       .css('transform', 'none')
       .attr({
