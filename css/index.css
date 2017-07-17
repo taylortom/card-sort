@@ -149,6 +149,7 @@ body {
   font-size: 150%;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 50px;
 }
 
 #newGroup input {
@@ -164,10 +165,15 @@ body {
 }
 
 #footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  background: #2b566b;
+  color: #ffffff;
   text-align: center;
-  color: #79a5bb;
   font-size: 90%;
-  margin-top: 20px;
 }
 
 .display-none {
