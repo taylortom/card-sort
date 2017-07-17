@@ -1,0 +1,52 @@
+{
+  "stack": [
+    {
+      "text": "Add a new user account"
+    },
+    {
+      "text": "Modify an existing image"
+    },
+    {
+      "text": "Create a course"
+    },
+    {
+      "text": "Change the theme of an existing course"
+    },
+    {
+      "text": "Set a new password for my user account"
+    },
+    {
+      "text": "View a preview of a course"
+    }
+  ],
+  "groups": [
+    {
+      "name": "Group 1",
+      "cards": [
+        {
+          "text": "Reduce page navigation"
+        },
+        {
+          "text": "'Hideable' sidebar"
+        }
+      ]
+    },
+    {
+      "name": "Group 2",
+      "cards": [
+        {
+          "text": "Tablet support"
+        },
+        {
+          "text": "Support multi-language courses"
+        },
+        {
+          "text": "Issue tracker / task manager / commenting"
+        },
+        {
+          "text": "'Live' preview"
+        }
+      ]
+    }
+  ]
+}

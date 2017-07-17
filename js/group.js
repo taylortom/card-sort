@@ -19,12 +19,13 @@ function render() {
 }
 function renderCards() {
   for(var i = 0, count = this.data.cards.length; i < count; i++) {
-    this.renderCard(this.cards[i]);
+    this.renderCard(this.data.cards[i]);
   }
 }
 
-function renderCard(card) {
-  console.log(card);
+function renderCard(cardData) {
+  var card = new Card(cardData);
+  $('.cards', this.$el).append(card.$el);
 }
 
 function onTitleClick(event) {

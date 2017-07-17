@@ -1,7 +1,5 @@
 $(function() {
-  var data = {
-    cards: null
-  };
+  var data;
 
   init();
 
@@ -16,8 +14,8 @@ $(function() {
   }
 
   function loadData(doneCb) {
-    $.getJSON("cards.json", function(responseData, status) {
-      data.cards = responseData;
+    $.getJSON("data.json", function(responseData, status) {
+      data = responseData;
       return doneCb();
     }).fail(function(response) {
       alert("Couldn't load card data, server responded with: " + response.status + " - " + response.statusText);
@@ -25,10 +23,28 @@ $(function() {
   }
 
   function render() {
-    for(var i = 0, count = data.cards.length; i < count; i++) {
-      var card = new Card(data.cards[i]);
+    renderStack();
+    renderGroups();
+  }
+
+  function renderStack() {
+    if(!data.stack) return;
+    for(var i = 0, count = data.stack.length; i < count; i++) {
+      var card = new Card(data.stack[i]);
       $("#stack").append(card.$el);
     }
+  }
+
+  function renderGroups() {
+    if(!data.groups) return;
+    for(var i = 0, count = data.groups.length; i < count; i++) {
+      renderGroup(data.groups[i]);
+    }
+  }
+
+  function renderGroup(data) {
+    var group = new Group(data);
+    $("#groups").append(group.$el);
   }
 
   function addNewCard(clickEvent) {
@@ -61,9 +77,7 @@ $(function() {
       .on('keyup', function(keyEvent) {
         var text = $(keyEvent.target).val();
         if(keyEvent.which === 13 && text !== '') {
-          var group = new Group({ name: text, cards: []});
-          $("#groups").append(group.$el);
-
+          renderGroup({ name: text, cards: [] });
           $("span", clickEvent.currentTarget).toggleClass("display-none");
           $("input", clickEvent.currentTarget).val("");
         }
