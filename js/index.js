@@ -52,7 +52,7 @@ $(function() {
     $("textarea", clickEvent.currentTarget)
       .focus()
       .on('keyup', function(keyEvent) {
-        var text = $(keyEvent.target).val();
+        var text = $(keyEvent.target).val().trim();
         if(keyEvent.which === 13 && text !== '') {
           var card = new Card({ text: text });
           $("#stack .button.add").after(card.$el);
@@ -75,7 +75,7 @@ $(function() {
     $("input", clickEvent.currentTarget)
       .focus()
       .on('keyup', function(keyEvent) {
-        var text = $(keyEvent.target).val();
+        var text = $(keyEvent.target).val().trim();
         if(keyEvent.which === 13 && text !== '') {
           renderGroup({ name: text, cards: [] });
           $("span", clickEvent.currentTarget).toggleClass("display-none");
