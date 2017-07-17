@@ -1,10 +1,11 @@
 var Group = function(data) {
   this.data = data;
+  this.$el = $("<div>", { class: "group" });
+
   this.render = render;
   this.renderCards = renderCards;
   this.renderCard = renderCard;
 
-  this.$el = $("<div>", { class: "group" });
   this.render();
 };
 
