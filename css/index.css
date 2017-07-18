@@ -168,7 +168,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   padding: 5px;
   background: #2b566b;
   color: #ffffff;
