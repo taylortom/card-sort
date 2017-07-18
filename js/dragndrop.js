@@ -29,11 +29,15 @@ interact('.draggable')
 interact('.dropzone')
   .dropzone({
     overlap: 0.5,
-    ondropactivate: function(event) {
-      $('.group .cards').addClass('drop-active');
+    ondragenter: function (event) {
+      $(event.target).addClass('drop-active');
+    },
+    ondragleave: function (event) {
+      $(event.target).removeClass('drop-active');
     },
     ondrop: function(event) {
+      event.relatedTarget.setAttribute('wasDragged', true);
       $(event.relatedTarget).appendTo(event.target);
-      $('.group .cards').removeClass('drop-active');
+      $(event.target).removeClass('drop-active');
     }
 });
