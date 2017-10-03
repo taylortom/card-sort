@@ -15,13 +15,13 @@ $(function() {
   }
 
   function getStates() {
-    var data = JSON.parse(window.localStorage.getItem('states')) || [];
+    var data = JSON.parse(window.localStorage.getItem("states")) || [];
     return data || [];
   }
 
   function getCurrentState() {
     var state = {
-      name: ""
+      name: "",
       stack: [],
       groups: [],
     };
@@ -43,7 +43,7 @@ $(function() {
   function saveState() {
     var states = getStates();
     states.push(getCurrentState());
-    window.localStorage.setItem('states', JSON.stringify(states));
+    window.localStorage.setItem("states", JSON.stringify(states));
   }
 
   function showStates() {
@@ -51,9 +51,9 @@ $(function() {
     var $el = $(".popup-states");
     $('.states', $el).empty();
     for(var i = 0, count = states.length; i < count; i++) {
-      $('.states', $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
+      $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
     }
-    $el.removeClass('display-none');
+    $el.removeClass("display-none");
 
     $(".button.state").click(restoreState);
   }
@@ -93,9 +93,9 @@ $(function() {
     $(clickEvent.currentTarget).children().toggleClass("display-none");
     $("textarea", clickEvent.currentTarget)
       .focus()
-      .on('keyup', function(keyEvent) {
+      .on("keyup", function(keyEvent) {
         var text = $(keyEvent.target).val().trim();
-        if(keyEvent.which === 13 && text !== '') {
+        if(keyEvent.which === 13 && text !== "") {
           var card = new Card({ text: text });
           $("#stack .button.add").after(card.$el);
 
@@ -116,9 +116,9 @@ $(function() {
     $("span", clickEvent.currentTarget).toggleClass("display-none");
     $("input", clickEvent.currentTarget)
       .focus()
-      .on('keyup', function(keyEvent) {
+      .on("keyup", function(keyEvent) {
         var text = $(keyEvent.target).val().trim();
-        if(keyEvent.which === 13 && text !== '') {
+        if(keyEvent.which === 13 && text !== "") {
           renderGroup({ name: text, cards: [] });
           $("span", clickEvent.currentTarget).toggleClass("display-none");
           $("input", clickEvent.currentTarget).val("");
