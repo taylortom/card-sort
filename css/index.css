@@ -21,6 +21,7 @@ img.icon {
   background: #2b566b;
   font-weight: bold;
   color: white;
+  z-index: 5000;
 }
 #header .inner {
   margin: 10px 15px;
@@ -53,7 +54,8 @@ img.icon {
   position: absolute;
   overflow: hidden;
   border: 1px solid #dae1e4;
-  z-index: 5000;
+  z-index: 4999;
+}
 
 .popup.name {
   top: 55px;
