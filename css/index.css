@@ -27,7 +27,13 @@ body {
   color: white;
   font-size: 90%;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 15px;
+}
+#menu .button:last-child {
+  margin-right: 5px;
+}
+#menu .button img {
+  margin-right:10px;
 }
 #menu .button:hover {
   text-decoration: underline;
@@ -43,6 +49,31 @@ body {
 }
 #title {
   display: inline-block;
+}
+
+.popup-states {
+  width: 150px;
+  background: white;
+  border-radius: 5px;
+  right: 10px;
+  position: absolute;
+  top: 55px;
+  overflow: hidden;
+  border: 1px solid #dae1e4;
+  z-index: 5000;
+}
+.popup-states .title {
+  background: #2c576b;
+  color: white;
+  padding: 5px 10px;
+}
+.popup-states .states {
+  padding: 10px;
+}
+.popup-states .state {
+  display: block;
+  margin-bottom: 5px;
+  color: inherit;
 }
 
 #stack {

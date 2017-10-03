@@ -4,22 +4,64 @@ $(function() {
   init();
 
   function init() {
-    loadData(render);
     initListeners();
   }
 
   function initListeners() {
     $("#newGroup").click(addNewGroup);
     $(".button.add").click(addNewCard);
+    $(".button.save").click(saveState);
+    $(".button.open").click(showStates);
   }
 
-  function loadData(doneCb) {
-    $.getJSON("data.json", function(responseData, status) {
-      data = responseData;
-      return doneCb();
-    }).fail(function(response) {
-      alert("Couldn't load card data, server responded with: " + response.status + " - " + response.statusText);
-    });
+  function getStates() {
+    var data = JSON.parse(window.localStorage.getItem('states')) || [];
+    return data || [];
+  }
+
+  function getCurrentState() {
+    var state = {
+      name: ""
+      stack: [],
+      groups: [],
+    };
+    /*
+    get name input
+    get stack {
+      text: "text"
+    }
+    get groups: {
+      name: "text",
+      cards: [
+        { text: "text" }
+      ]
+    }
+    */
+    return state;
+  };
+
+  function saveState() {
+    var states = getStates();
+    states.push(getCurrentState());
+    window.localStorage.setItem('states', JSON.stringify(states));
+  }
+
+  function showStates() {
+    var states = getStates();
+    var $el = $(".popup-states");
+    $('.states', $el).empty();
+    for(var i = 0, count = states.length; i < count; i++) {
+      $('.states', $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
+    }
+    $el.removeClass('display-none');
+
+    $(".button.state").click(restoreState);
+  }
+
+  function restoreState(event) {
+    console.log($(event.currentTarget).attr('data-id'));
+    // data = state;
+    // render();
   }
 
   function render() {
