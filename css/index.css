@@ -54,6 +54,19 @@ img.icon {
   overflow: hidden;
   border: 1px solid #dae1e4;
   z-index: 5000;
+
+.popup.name {
+  top: 55px;
+  right: 10px;
+}
+.popup.name input {
+  width: 200px;
+  padding: 10px;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .popup.states {

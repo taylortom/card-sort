@@ -10,11 +10,33 @@ $(function() {
   function initListeners() {
     $("#newGroup").click(addNewGroup);
     $(".button.add").click(addNewCard);
-    $(".button.save").click(saveState);
-    $(".button.open").click(showStates);
+    $(".button.save").click(toggleSaveDialog);
+    $(".button.open").click(toggleStatesDialog);
+    $("")
   }
 
-  function getStates() {
+  function toggleVisibility($el) {
+    var ANIM_TIME = 100;
+    // TODO get the top values dynamically
+    var visibleCSS = {
+      opacity: 1,
+      top: 55
+    };
+    var hiddenCSS = {
+      opacity: 0,
+      top: 35
+    };
+    var isVisible = !$el.hasClass('display-none');
+
+    if(!isVisible) {
+      $el.removeClass("display-none");
+    }
+    $el.css(isVisible ? visibleCSS : hiddenCSS).animate(isVisible ? hiddenCSS : visibleCSS, ANIM_TIME, function() {
+      if(isVisible) $el.addClass("display-none");
+    });
+  }
+
+  function getSavedStates() {
     var data = JSON.parse(window.localStorage.getItem("states")) || [];
     return data || [];
   }
@@ -40,22 +62,30 @@ $(function() {
     return state;
   };
 
+  function toggleSaveDialog() {
+    var $el = $(".popup.name");
+    toggleVisibility($el);
+    if(!$el.hasClass('display-none')) {
+      $('input', $el).focus();
+    }
+  }
+
   function saveState() {
-    var states = getStates();
+    var states = getSavedStates();
     states.push(getCurrentState());
     window.localStorage.setItem("states", JSON.stringify(states));
   }
 
-  function showStates() {
-    var states = getStates();
-    var $el = $(".popup-states");
-    $('.states', $el).empty();
-    for(var i = 0, count = states.length; i < count; i++) {
-      $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
+  function toggleStatesDialog() {
+    var $el = $(".popup.states");
+    if($el.hasClass("display-none")) {
+      var states = getSavedStates();
+      $(".states", $el).empty();
+      for(var i = 0, count = states.length; i < count; i++) {
+        $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
     }
-    $el.removeClass("display-none");
-
     $(".button.state").click(restoreState);
+    toggleVisibility($el);
   }
 
   function restoreState(event) {
