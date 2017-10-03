@@ -6,6 +6,12 @@ body {
   background: #dbf4f7;
 }
 
+img.icon {
+  vertical-align: text-bottom;
+  height: 20px;
+  margin-right: 10px;
+}
+
 #header {
   font-size: 120%;
   position: fixed;
@@ -22,6 +28,7 @@ body {
 #menu {
   float: right;
 }
+
 #menu .button {
   display: inline-block;
   color: white;
@@ -32,21 +39,10 @@ body {
 #menu .button:last-child {
   margin-right: 5px;
 }
-#menu .button img {
-  margin-right:10px;
-}
 #menu .button:hover {
   text-decoration: underline;
 }
 
-#logo {
-  width: 17px;
-  height: 17px;
-  background: url('../assets/cards-white.png');
-  background-size: contain;
-  display: inline-block;
-  margin-right: 10px;
-}
 #title {
   display: inline-block;
 }
