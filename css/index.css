@@ -47,29 +47,36 @@ img.icon {
   display: inline-block;
 }
 
-.popup-states {
-  width: 150px;
+.popup {
   background: white;
   border-radius: 5px;
-  right: 10px;
   position: absolute;
-  top: 55px;
   overflow: hidden;
   border: 1px solid #dae1e4;
   z-index: 5000;
 }
-.popup-states .title {
+
+.popup.states {
+  width: 150px;
+  top: 55px;
+  right: 10px;
+}
+.popup.states .title {
   background: #2c576b;
   color: white;
   padding: 5px 10px;
 }
-.popup-states .states {
-  padding: 10px;
-}
-.popup-states .state {
+.popup.states .state {
   display: block;
-  margin-bottom: 5px;
   color: inherit;
+  padding: 10px;
+  border-bottom: 1px solid #d9e1e4;
+}
+.popup.states .state:last-child {
+  border-bottom: none;
+}
+.popup.states .state:hover {
+  background: #f4fafb;
 }
 
 #stack {
