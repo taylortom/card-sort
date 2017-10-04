@@ -1,5 +1,3 @@
-var waiting;
-
 interact('.draggable')
   .draggable({
   // call this function on every dragmove event
