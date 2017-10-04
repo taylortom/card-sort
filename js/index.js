@@ -54,22 +54,25 @@ $(function() {
 
   function getCurrentState() {
     var state = {
-      name: "",
+      id: Date.now(),
+      name: $('input[name="name"]').val(),
       stack: [],
       groups: [],
     };
-    /*
-    get name input
-    get stack {
-      text: "text"
-    }
-    get groups: {
-      name: "text",
-      cards: [
-        { text: "text" }
-      ]
-    }
-    */
+    $("#stack div.card").each(function(index, card) {
+      state.stack.push({ text: $(card).text() });
+    });
+    $("#groups .group").each(function(index, group) {
+      var $group = $(group);
+      var groupData = {
+        name: $('.title', group).text(),
+        cards: []
+      };
+      $('.card', group).each(function(index, card) {
+        groupData.cards.push({ text: $(card).text() });
+      });
+      state.groups.push(groupData);
+    });
     return state;
   };
 
