@@ -146,9 +146,6 @@ img.icon {
 
 .card:hover {
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  transform: scale(1.05, 1.05);
-  -webkit-transition-duration: 0.2s; /* Safari */
-    transition-duration: 0.2s;
 }
 
 #stack .button {
