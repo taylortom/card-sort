@@ -45,11 +45,22 @@ $(function() {
     $el.css(isVisible ? visibleCSS : hiddenCSS).animate(isVisible ? hiddenCSS : visibleCSS, ANIM_TIME, function() {
       if(isVisible) $el.addClass("display-none");
     });
+
+    return !isVisible;
   }
 
   function getSavedStates() {
     var data = JSON.parse(window.localStorage.getItem("states")) || [];
     return data || [];
+  }
+
+  function getSavedStateById(id) {
+    var states = getSavedStates();
+    var state;
+    for(var i = 0, count = states.length; i < count; i++) {
+      if(states[i].id.toString() === id) state = states[i];
+    }
+    return state;
   }
 
   function getCurrentState() {
@@ -79,10 +90,12 @@ $(function() {
   function toggleSaveDialog() {
     var $el = $(".popup.name");
     var $input = $('input', $el);
-    toggleVisibility($el);
-    if(!$el.hasClass('display-none')) {
-      $input.val("").focus();
+    var isVisible = toggleVisibility($el);
+    if(!isVisible) {
+      return;
     }
+    $input.val("").focus();
+
     $(document).on("keydown", function(event) {
       if(event.which === 27) { // esc
         $(document).off("keydown");
@@ -117,17 +130,23 @@ $(function() {
     if($el.hasClass("display-none")) {
       var states = getSavedStates();
       $(".states", $el).empty();
-      for(var i = 0, count = states.length; i < count; i++) {
-        $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
+      if(states.length === 0) {
+        $(".states", $el).append('<p style="text-align:center;">No states saved!</p>');
+      } else {
+        for(var i = 0, count = states.length; i < count; i++) {
+          $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
+        }
+        $(".button.state").click(restoreState);
+      }
     }
-    $(".button.state").click(restoreState);
     toggleVisibility($el);
   }
 
   function restoreState(event) {
-    console.log($(event.currentTarget).attr('data-id'));
-    // data = state;
-    // render();
+    $(".popup.states").addClass("display-none");
+    hideScreenlock();
+    data = getSavedStateById($(event.currentTarget).attr("data-id"));
+    render();
   }
 
   function render() {
