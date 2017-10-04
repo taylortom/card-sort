@@ -13,6 +13,7 @@ $(function() {
     $(".button.add").click(addNewCard);
     $(".button.save").click(toggleSaveDialog);
     $(".button.open").click(toggleStatesDialog);
+    $(".button.reset").click(resetState);
   }
 
   function showScreenlock(duration) {
@@ -156,6 +157,11 @@ $(function() {
     $(".popup.states").addClass("display-none");
     hideScreenlock();
     data = getSavedStateById($(event.currentTarget).attr("data-id"));
+    render();
+  }
+
+  function resetState(event) {
+    data = {};
     render();
   }
 
