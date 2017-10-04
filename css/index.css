@@ -29,7 +29,7 @@ body {
 img.icon {
   vertical-align: text-bottom;
   height: 20px;
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 #header {
@@ -70,7 +70,6 @@ img.icon {
 
 .popup {
   background: white;
-  border: 1.5px solid white;
   border-radius: 5px;
   position: absolute;
   overflow: hidden;
