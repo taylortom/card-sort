@@ -1,11 +1,11 @@
 $(function() {
-  var data;
+  var data = {};
 
   init();
 
   function init() {
     initListeners();
-    hideScreenlock(0);
+    render();
   }
 
   function initListeners() {
@@ -150,8 +150,20 @@ $(function() {
   }
 
   function render() {
+    hideScreenlock(0);
+    renderStateName();
     renderStack();
     renderGroups();
+  }
+
+  function renderStateName() {
+    var $el = $("#name");
+    console.log(data.name, $el);
+    if(!data.name) {
+      $el.hide();
+      return;
+    }
+    $el.text(data.name).show();
   }
 
   function renderStack() {
