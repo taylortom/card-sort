@@ -5,6 +5,7 @@ $(function() {
 
   function init() {
     initListeners();
+    hideScreenlock(0);
   }
 
   function initListeners() {
@@ -12,7 +13,14 @@ $(function() {
     $(".button.add").click(addNewCard);
     $(".button.save").click(toggleSaveDialog);
     $(".button.open").click(toggleStatesDialog);
-    $("")
+  }
+
+  function showScreenlock(duration) {
+    $("#screenlock").fadeIn(duration);
+  }
+
+  function hideScreenlock(duration) {
+    $("#screenlock").fadeOut(duration);
   }
 
   function toggleVisibility($el) {
@@ -30,6 +38,9 @@ $(function() {
 
     if(!isVisible) {
       $el.removeClass("display-none");
+      showScreenlock();
+    } else {
+      hideScreenlock();
     }
     $el.css(isVisible ? visibleCSS : hiddenCSS).animate(isVisible ? hiddenCSS : visibleCSS, ANIM_TIME, function() {
       if(isVisible) $el.addClass("display-none");
@@ -64,10 +75,32 @@ $(function() {
 
   function toggleSaveDialog() {
     var $el = $(".popup.name");
+    var $input = $('input', $el);
     toggleVisibility($el);
     if(!$el.hasClass('display-none')) {
-      $('input', $el).focus();
+      $input.val("").focus();
     }
+    $(document).on("keydown", function(event) {
+      if(event.which === 27) { // esc
+        $(document).off("keydown");
+        toggleSaveDialog();
+        return;
+      }
+      if(event.which === 13) { // enter
+        if($input.val().trim().length === 0) {
+          var beforeCSS = { 'border-color': 'white' };
+          var afterCSS = { 'border-color': 'red' };
+          var DURATION = 200;
+          $input.closest(".popup").css(beforeCSS).animate(afterCSS, DURATION, function() {
+            $(this).animate(beforeCSS, DURATION);
+          });
+          return;
+        }
+        $(document).off("keydown");
+        toggleSaveDialog();
+        saveState();
+      }
+    });
   }
 
   function saveState() {
