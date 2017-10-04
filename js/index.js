@@ -167,6 +167,7 @@ $(function() {
   }
 
   function renderStack() {
+    $("#stack div.card").remove();
     if(!data.stack) return;
     for(var i = 0, count = data.stack.length; i < count; i++) {
       var card = new Card(data.stack[i]);
@@ -175,6 +176,7 @@ $(function() {
   }
 
   function renderGroups() {
+    $("#groups").empty();
     if(!data.groups) return;
     for(var i = 0, count = data.groups.length; i < count; i++) {
       renderGroup(data.groups[i]);
