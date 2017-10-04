@@ -151,6 +151,14 @@ $(function() {
       }
     }
     toggleVisibility($el);
+
+    $(document).on("keydown", function(event) {
+      if(event.which === 27) { // esc
+        $(document).off("keydown");
+        toggleStatesDialog();
+        return;
+      }
+    });
   }
 
   function restoreState(event) {
