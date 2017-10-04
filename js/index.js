@@ -121,7 +121,17 @@ $(function() {
 
   function saveState() {
     var states = getSavedStates();
-    states.push(getCurrentState());
+    var currState = getCurrentState();
+    for(var i = 0, count = states.length; i < count; i++) {
+      if(states[i].name === currState.name) {
+        states[i] = currState;
+        currState = false;
+      }
+    }
+    // if this still exists, it's a new state
+    if(currState) {
+      states.push();
+    }
     window.localStorage.setItem("states", JSON.stringify(states));
   }
 
@@ -158,7 +168,6 @@ $(function() {
 
   function renderStateName() {
     var $el = $("#name");
-    console.log(data.name, $el);
     if(!data.name) {
       $el.hide();
       return;
