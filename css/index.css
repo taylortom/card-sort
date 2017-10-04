@@ -6,6 +6,17 @@ body {
   background: #dbf4f7;
 }
 
+#name {
+  padding-top: 10px;
+  font-size: 24px;
+  text-align: center;
+  color: #454545;
+}
+
+#filler{
+  height: 25px;
+}
+
 #screenlock {
   width: 100vw;
   height: 100vh;
@@ -104,7 +115,7 @@ img.icon {
 }
 
 #stack {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
