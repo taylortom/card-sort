@@ -159,6 +159,9 @@ img.icon {
 
 .card:hover {
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  background-color: #4c4c4c;
+}
+
 }
 
 #stack .button {
