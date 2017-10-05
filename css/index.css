@@ -76,6 +76,18 @@ img.icon {
   z-index: 4999;
 }
 
+.popup .button.close {
+  position: absolute;
+  right: 6px;
+  cursor: pointer;
+}
+.popup.name .button.close {
+  top: 6px;
+}
+.popup .button.close img {
+  height: 10px;
+}
+
 .popup.name {
   top: 55px;
   right: 10px;

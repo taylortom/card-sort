@@ -11,9 +11,19 @@ $(function() {
   function initListeners() {
     $("#newGroup").click(addNewGroup);
     $(".button.add").click(addNewCard);
-    $(".button.save").click(toggleSaveDialog);
-    $(".button.open").click(toggleStatesDialog);
+    $(".button.save").click(showSaveDialog);
+    $(".button.open").click(showStatesDialog);
     $(".button.reset").click(resetState);
+    $(".popup.name .button.close").click(hideSaveDialog);
+    $(".popup.states .button.close").click(hideStatesDialog);
+
+    $(document).on("keydown", function(event) {
+      if(event.which === 27) { // esc
+        hidePopups();
+        hideScreenlock();
+        resetAddNewCard();
+      }
+    });
   }
 
   function showScreenlock(duration) {
@@ -24,7 +34,24 @@ $(function() {
     $("#screenlock").fadeOut(duration);
   }
 
-  function toggleVisibility($el) {
+
+  function showPopup($el) {
+    if(!$el.hasClass('display-none')) {
+      return;
+    }
+    hidePopups();
+    animatePopup($el, true);
+  }
+
+  function hidePopup($el) {
+    animatePopup($el, false);
+  }
+
+  function hidePopups() {
+    $('.popup').addClass('display-none');
+  }
+
+  function animatePopup($el, isVisible) {
     var ANIM_TIME = 100;
     // TODO get the top values dynamically
     var visibleCSS = {
@@ -35,16 +62,14 @@ $(function() {
       opacity: 0,
       top: 35
     };
-    var isVisible = !$el.hasClass('display-none');
-
-    if(!isVisible) {
+    if(isVisible) {
       $el.removeClass("display-none");
       showScreenlock();
     } else {
       hideScreenlock();
     }
-    $el.css(isVisible ? visibleCSS : hiddenCSS).animate(isVisible ? hiddenCSS : visibleCSS, ANIM_TIME, function() {
-      if(isVisible) $el.addClass("display-none");
+    $el.css(isVisible ? hiddenCSS : visibleCSS).animate(isVisible ? visibleCSS : hiddenCSS, ANIM_TIME, function() {
+      if(!isVisible) $el.addClass("display-none");
     });
 
     return !isVisible;
@@ -88,21 +113,14 @@ $(function() {
     return state;
   };
 
-  function toggleSaveDialog() {
+  function showSaveDialog() {
     var $el = $(".popup.name");
     var $input = $('input', $el);
-    var isVisible = toggleVisibility($el);
-    if(!isVisible) {
-      return;
-    }
+    showPopup($el);
+
     $input.val("").focus();
 
     $(document).on("keydown", function(event) {
-      if(event.which === 27) { // esc
-        $(document).off("keydown");
-        toggleSaveDialog();
-        return;
-      }
       if(event.which === 13) { // enter
         if($input.val().trim().length === 0) {
           var beforeCSS = { 'border-color': 'white' };
@@ -114,10 +132,14 @@ $(function() {
           return;
         }
         $(document).off("keydown");
-        toggleSaveDialog();
+        hideSaveDialog();
         saveState();
       }
     });
+  }
+
+  function hideSaveDialog() {
+    hidePopup($(".popup.name"));
   }
 
   function saveState() {
@@ -136,29 +158,23 @@ $(function() {
     window.localStorage.setItem("states", JSON.stringify(states));
   }
 
-  function toggleStatesDialog() {
+  function showStatesDialog() {
     var $el = $(".popup.states");
-    if($el.hasClass("display-none")) {
-      var states = getSavedStates();
-      $(".states", $el).empty();
-      if(states.length === 0) {
-        $(".states", $el).append('<p style="text-align:center;">No states saved!</p>');
-      } else {
-        for(var i = 0, count = states.length; i < count; i++) {
-          $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
-        }
-        $(".button.state").click(restoreState);
+    var states = getSavedStates();
+    $(".states", $el).empty();
+    if(states.length === 0) {
+      $(".states", $el).append('<p style="text-align:center;">No states saved!</p>');
+    } else {
+      for(var i = 0, count = states.length; i < count; i++) {
+        $(".states", $el).append('<a href="#" class="button state" data-id="' + states[i].id + '">' + states[i].name);
       }
+      $(".button.state").click(restoreState);
     }
-    toggleVisibility($el);
+    showPopup($el);
+  }
 
-    $(document).on("keydown", function(event) {
-      if(event.which === 27) { // esc
-        $(document).off("keydown");
-        toggleStatesDialog();
-        return;
-      }
-    });
+  function hideStatesDialog() {
+    hidePopup($(".popup.states"));
   }
 
   function restoreState(event) {
@@ -169,6 +185,7 @@ $(function() {
   }
 
   function resetState(event) {
+    hidePopups();
     data = {};
     render();
   }
@@ -211,6 +228,13 @@ $(function() {
     $("#groups").append(group.$el);
   }
 
+  function resetAddNewCard() {
+    var $el = $(".card.button.add");
+    $("span", $el).removeClass("display-none");
+    $("span.input", $el).addClass("display-none");
+    $("textarea", $el).val("");
+  }
+
   function addNewCard(clickEvent) {
     $(clickEvent.currentTarget).children().toggleClass("display-none");
     $("textarea", clickEvent.currentTarget)
@@ -220,9 +244,7 @@ $(function() {
         if(keyEvent.which === 13 && text !== "") {
           var card = new Card({ text: text });
           $("#stack .button.add").after(card.$el);
-
-          $("span", clickEvent.currentTarget).toggleClass("display-none");
-          $("textarea", clickEvent.currentTarget).val("");
+          resetAddNewCard();
         }
       });
   }
