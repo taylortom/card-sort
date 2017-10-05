@@ -153,7 +153,7 @@ $(function() {
     }
     // if this still exists, it's a new state
     if(currState) {
-      states.push();
+      states.push(currState);
     }
     window.localStorage.setItem("states", JSON.stringify(states));
   }
