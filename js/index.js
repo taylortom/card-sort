@@ -6,6 +6,8 @@ $(function() {
   function init() {
     initListeners();
     render();
+
+    $("#year").text(new Date().getFullYear());
   }
 
   function initListeners() {
