@@ -91,6 +91,7 @@ img.icon {
 .popup.name {
   top: 55px;
   right: 10px;
+  border: 1.5px solid white;
 }
 .popup.name input {
   width: 200px;
